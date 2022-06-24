@@ -153,6 +153,7 @@ class ApprovalController extends Controller
                     ->orWhere('sub_county', 'LIKE', "%$value%")
                     ->orWhere('town', 'LIKE', "%$value%")
                     ->orWhere('address', 'LIKE', "%$value%")
+                    ->orWhere('organization', 'LIKE', "%$value%")
                     ->get();
         print_r(json_encode(['user' => $apps, 'role' => json_decode(Auth::guard('user')->user()->role_id)->role, 'val' => $value]));
     }

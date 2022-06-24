@@ -1,5 +1,5 @@
     const ServerData = new (function(){
-        this.studies = ['Diploma','Certificate','Graduate','Non-standard','Post-Graduate','Under-Graduate','Masters','PHD'];
+        this.studies = ['Certificate','Diploma','Non-standard','Graduate','Post-Graduate','Under-Graduate','Masters','PHD'];
         this.attendance_arr = ['REGULAR','FULL-TIME','PART-TIME','ONLINE-LEARNING','HOLIDAY-LEARNING','DISTANCE-LEARNING','EVENING']
         this.bindAuth = async function(r, h, c, m){
             let pop = { method : r }
@@ -137,58 +137,45 @@
                             <section class = 'inner-part-level${ k }' id = 'inner-part-level' style = 'display:none;'>
                                 <h3>Academics Profile</h3>
                                 <div id = 'other-table'>
-                                    ${ (a[0].academics) ? $.parseJSON(a[0].academics).map( d =>
-                                        `
-                                        <div>
-                                            <p>Institution</p>
-                                            ${ d.institution }
-                                        </div>
-                                        <div>
-                                            <p>Name</p>
-                                            ${ d.name }
-                                        </div>
-                                        <div>
-                                            <p>Grade</p>
-                                            ${ d.grade }
-                                        </div>
-                                        <div>
-                                            <p>Certificate</p>
-                                            <a href = '/certs/${ d.certificate }' class = 'btn btn-alt-success'>Download</a>
-                                        </div>
-                                        <div>
-                                            <p>Start</p>
-                                            ${ d.start }
-                                        </div>
-                                        <div>
-                                            <p>End</p>
-                                            ${ d.end }
-                                        </div>
-
-                                        `
-                                    ) : '<p>No academic profile</p>'}
+                                    <div>
+                                        <p>Institution</p>
+                                        ${ a.institution }
+                                    </div>
+                                    <div>
+                                        <p>Grade</p>
+                                        ${ a.qualification }
+                                    </div>
+                                    <div>
+                                        <p>Certificate</p>
+                                        <a href = '/certs/${ a.certificate }' class = 'btn btn-alt-success'>Download</a>
+                                    </div>
+                                    <div>
+                                        <p>Start</p>
+                                        ${ d.start_date }
+                                    </div>
+                                    <div>
+                                        <p>End</p>
+                                        ${ d.exit_date }
+                                    </div>
                                 </div>
                                 <h3>Work Profile</h3>
                                 <div id = 'other-table'>
-                                    ${ (a[0].work) ? $.parseJSON(a[0].work).map( w =>
-                                        `<div>
-                                            <p>Institution</p>
-                                            ${ w.name }
-                                        </div>
-                                        <div>
-                                            <p>Job</p>
-                                            ${ w.post }
-                                        </div>
-                                        <div>
-                                            <p>Start</p>
-                                            ${ w.start }
-                                        </div>
-                                        <div>
-                                            <p>End</p>
-                                            ${ w.end }
-                                        </div>
-
-                                        `
-                                    ) : '<p>No work profile</p>'}
+                                    <div>
+                                        <p>Institution</p>
+                                        ${ a.organization }
+                                    </div>
+                                    <div>
+                                        <p>Job</p>
+                                        ${ a.post }
+                                    </div>
+                                    <div>
+                                        <p>Start</p>
+                                        ${ a.start_date }
+                                    </div>
+                                    <div>
+                                        <p>End</p>
+                                        ${ a.exit_date }
+                                    </div>
                                 </div>
                                 <h3>Application Process</h3>
                                 <div id = 'other-table'>
@@ -600,58 +587,45 @@
                             <section class = 'inner-part-level${ k }' id = 'inner-part-level' style = 'display:none;'>
                                 <h3>Academics Profile</h3>
                                 <div id = 'other-table'>
-                                    ${ (a.academics) ? $.parseJSON(a.academics).map( d =>
-                                        `
-                                        <div>
-                                            <p>Institution</p>
-                                            ${ d.institution }
-                                        </div>
-                                        <div>
-                                            <p>Name</p>
-                                            ${ d.name }
-                                        </div>
-                                        <div>
-                                            <p>Grade</p>
-                                            ${ d.grade }
-                                        </div>
-                                        <div>
-                                            <p>Certificate</p>
-                                            <a href = '/certs/${ d.certificate }' class = 'btn btn-alt-success'>Download</a>
-                                        </div>
-                                        <div>
-                                            <p>Start</p>
-                                            ${ d.start }
-                                        </div>
-                                        <div>
-                                            <p>End</p>
-                                            ${ d.end }
-                                        </div>
-
-                                        `
-                                    ) : '<p>No academic profile</p>'}
+                                    <div>
+                                        <p>Institution</p>
+                                        ${ a.institution }
+                                    </div>
+                                    <div>
+                                        <p>Grade</p>
+                                        ${ a.qualification }
+                                    </div>
+                                    <div>
+                                        <p>Certificate</p>
+                                        <a href = '/certs/${ a.certificate }' class = 'btn btn-alt-success'>Download</a>
+                                    </div>
+                                    <div>
+                                        <p>Start</p>
+                                        ${ d.start_date }
+                                    </div>
+                                    <div>
+                                        <p>End</p>
+                                        ${ d.exit_date }
+                                    </div>
                                 </div>
                                 <h3>Work Profile</h3>
                                 <div id = 'other-table'>
-                                    ${ (a.work) ? $.parseJSON(a.work).map( w =>
-                                        `<div>
-                                            <p>Institution</p>
-                                            ${ w.name }
-                                        </div>
-                                        <div>
-                                            <p>Job</p>
-                                            ${ w.post }
-                                        </div>
-                                        <div>
-                                            <p>Start</p>
-                                            ${ w.start }
-                                        </div>
-                                        <div>
-                                            <p>End</p>
-                                            ${ w.end }
-                                        </div>
-
-                                        `
-                                    ) : '<p>No work profile</p>'}
+                                    <div>
+                                        <p>Institution</p>
+                                        ${ a.organization }
+                                    </div>
+                                    <div>
+                                        <p>Job</p>
+                                        ${ a.post }
+                                    </div>
+                                    <div>
+                                        <p>Start</p>
+                                        ${ a.start_date }
+                                    </div>
+                                    <div>
+                                        <p>End</p>
+                                        ${ a.exit_date }
+                                    </div>
                                 </div>
                                 <h3>Application Process</h3>
                                 <div id = 'other-table'>
