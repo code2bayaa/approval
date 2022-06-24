@@ -84,7 +84,7 @@
             let limit = (100 * page)
             let offset = (limit - 100)
             console.log({ 'course' : course, 'level' : level, 'attendance' : attendance, 'year' : year, 'status' : status, 'intake' : intake, 'limit' : limit, 'offset' : offset })
-            let applications = await this.bindAuth('POST',`/approval/getApplications`,true,{ 'course' : course, 'level' : level, 'attendance' : attendance, 'year' : year, 'status' : status, 'intake' : intake, 'limit' : limit, 'offset' : offset, filter })
+            let applications = await this.bindAuth('POST',`approval/getApplications`,true,{ 'course' : course, 'level' : level, 'attendance' : attendance, 'year' : year, 'status' : status, 'intake' : intake, 'limit' : limit, 'offset' : offset, filter })
             console.log(applications)
             ServerData.Page = applications.page
             let pages = [];
@@ -378,7 +378,7 @@
             if(role == 4)
                 id = "4,8,10"
         }
-        let list_data = await ServerData.bindAuth('POST',"/approval/fetchData",true,{ id })
+        let list_data = await ServerData.bindAuth('POST',"approval/fetchData",true,{ id })
         console.log(list_data)
         let list_string = `<div id = 'time-out'><img src = '/Images/clipboard.svg'>No ${type} lists</div>`
         if(list_data.list.length > 0){
@@ -425,7 +425,7 @@
     }
 
     const showCourses = async() => {
-        let collect = await ServerData.bindAuth('GET',`/approval/getCourses`,false)
+        let collect = await ServerData.bindAuth('GET',`approval/getCourses`,false)
         console.log(collect)
         let collect_string = collect.course.map( c =>
             `
@@ -460,7 +460,7 @@
         const program = sessionStorage.getItem('programId')
         const name = sessionStorage.getItem('nameIntake')
 
-        let collect = await ServerData.bindAuth('POST',`/approval/getApplication`,true,{ 'app' : app })
+        let collect = await ServerData.bindAuth('POST',`approval/getApplication`,true,{ 'app' : app })
 
         ServerData.collect = collect.app
         let courses = collect.courses
@@ -499,7 +499,7 @@
         ServerData.beApproved(1,0);
     }
     const buildGraph = async(e) => {
-        let graph_data = await ServerData.bindAuth('GET',`/approval/graph`,false)
+        let graph_data = await ServerData.bindAuth('GET',`approval/graph`,false)
         console.log(graph_data)
         let plot = [
             {'go_id' : 'pie-cod','go_text' : 'Approved & Rejected Applications', 'type' : 'pie'},
@@ -520,7 +520,7 @@
             sessionStorage.setItem('programId',e.currentTarget.attributes[2].value)
             sessionStorage.setItem('status',e.currentTarget.attributes[3].value)
             sessionStorage.setItem('nameIntake',e.currentTarget.attributes[4].value)
-            document.location.assign(`/approval/pendingView`)
+            document.location.assign(`approval/pendingView`)
         })
         $(document).on('click','#prev',function(e){
             e.preventDefault();
@@ -540,7 +540,7 @@
         $(document).on('click','#search-query-button', async(e) =>{
             e.preventDefault()
             const search = $('#search-input').val();
-            let search_query = await ServerData.bindAuth('POST',`/approval/getCandidate`,true,{ 'value' : search })
+            let search_query = await ServerData.bindAuth('POST',`approval/getCandidate`,true,{ 'value' : search })
             console.log(search_query)
             let approvals = "<div id = 'time-out'><img src = '/Images/clipboard.svg'>Database Empty</div>"
             if(search_query.user){
@@ -672,7 +672,7 @@
             e.preventDefault()
             var check = confirm("Are you sure you want to approve?");
             if(check){
-                let application_approve = await ServerData.bindAuth('POST',`/approval/approveApplication`,true,{ 'application' : e.currentTarget.attributes[1].value, 'reason' : 'OK' })
+                let application_approve = await ServerData.bindAuth('POST',`approval/approveApplication`,true,{ 'application' : e.currentTarget.attributes[1].value, 'reason' : 'OK' })
                 if(application_approve.user){
                     $('.content-force').append(`
                         <div id = 'fill-modal'>
@@ -709,7 +709,7 @@
             e.preventDefault()
             let reason = $('#rejection-reason').val()
             if(reason){
-                let application_reject = await ServerData.bindAuth('POST',`/approval/rejectApplication`,true,{ 'application' : e.currentTarget.attributes[1].value, 'reason' : reason })
+                let application_reject = await ServerData.bindAuth('POST',`approval/rejectApplication`,true,{ 'application' : e.currentTarget.attributes[1].value, 'reason' : reason })
                 if(application_reject.user){
                     $('#fill-modal').html(`
                         <div id = 'inner-fill-modal'>
@@ -739,7 +739,7 @@
             var check = confirm("Are you sure you want to push?");
             if(check){
                 let status = e.currentTarget.attributes[2].value
-                let pushed = await ServerData.bindAuth('POST',`/approval/push`,true,{ 'intake' : e.currentTarget.attributes[1].value, status  })
+                let pushed = await ServerData.bindAuth('POST',`approval/push`,true,{ 'intake' : e.currentTarget.attributes[1].value, status  })
                 console.log(pushed)
                 if(pushed.now){
                     $('.content-force').append(`
