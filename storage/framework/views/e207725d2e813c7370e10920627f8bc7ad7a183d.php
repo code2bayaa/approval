@@ -1,10 +1,9 @@
-
 <?php $__env->startSection('content'); ?>
     <!-- Page Content -->
     <!-- Approved Page -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
-    <link href="<?php echo e(asset('/css/index.css')); ?>" rel="stylesheet" />
-    <script src = "<?php echo e(asset('jquery.js')); ?>" ></script>
+    <link href="<?php echo e(asset('css/index.css')); ?>" rel="stylesheet" />
+    <script src = "<?php echo e(asset('js/jquery.js')); ?>" ></script>
     <div class="bg-body-light">
         <div class="content content-full">
             <div class = "d-flex flex-column flex-sm-row justify-content-sm-between align-items-sm-center py-2">
@@ -33,7 +32,7 @@
     </div>
     <!-- END Page Content -->
 
-    <script src = "<?php echo e(asset('/js/build.js')); ?>"></script>
+    <script src = "<?php echo e(asset('js/build.js')); ?>"></script>
     <script>
         retrieveApplication({"status" : 1, "role" : 2});
     </script>
